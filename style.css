@@ -1,0 +1,939 @@
+/* style.css */
+
+/* --- Configurações básicas e globais --- */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Fonte mais moderna e forte */
+    background-color: #070707; /* Fundo mais escuro para um ar mais premium e focado */
+    color: #1e1c1c; /* Cor de texto padrão clara para contraste */
+    min-height: 100vh;
+    line-height: 1.6; /* Levemente mais espaçado para melhor leitura */
+}
+
+/* --- Cabeçalho --- */
+header {
+    background-color: #0d0d0d; /* Preto quase puro para o cabeçalho */
+    color: #ffffff; /* Texto branco puro */
+    padding: 1.2rem 1rem; /* Mais padding para um visual imponente */
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra mais marcada */
+}
+
+
+
+/* --- Container principal de conteúdo --- */
+.container {
+    margin: 2rem auto;
+    max-width: 1000px; /* Aumenta um pouco a largura máxima */
+    background: #2b2b2b; /* Fundo do container um cinza mais escuro */
+    padding: 2.5rem; /* Mais padding interno */
+    border-radius: 8px; /* Cantos levemente arredondados */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra mais intensa */
+    animation: fadeIn 1s ease;
+    color: #f0f0f0; /* Texto dentro do container também claro */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); } /* Efeito de surgir de baixo */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Títulos --- */
+h2 {
+    text-align: center;
+    font-size: 1.5rem; /* Tamanho maior para o título principal */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte que remete a força, se disponível, ou uma sans-serif forte */
+    color: #ffffff; /* Título principal */
+    
+    margin-bottom: 2.5rem;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: #4949494a; /* Preto quase puro */
+    color: #ffffff; /* Texto branco */
+    padding: 3rem 1rem 1rem; /* Mais padding no topo para as colunas, menos embaixo */
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(130, 130, 130, 0.092); /* Sombra para cima */
+    display: flex; /* Transforma o footer em um container flexível */
+    flex-direction: column; /* Organiza os blocos verticalmente */
+    align-items: center; /* Centraliza o conteúdo */
+}
+
+
+
+
+.home-fundo::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 90%;
+    background-image: url();
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    animation: zoom 10s infinite alternate ease-in-out;
+}
+
+.home-fundo::after {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Camada escura um pouco mais forte */
+    z-index: 2;
+}
+
+.conteudo-home {
+    position: relative;
+    z-index: 3;
+    padding: 2rem;
+}
+
+@keyframes zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.video-container {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Os estilos existentes para .slideshow-container, .mySlides, .prev, .next, .text, .numbertext, .dot devem ser removidos ou comentados se você substituir o carrossel antigo */
+
+/* --- Estilos do Carrossel Flickity --- */
+.gallery {
+    max-width: 800px; /* Mantém a largura consistente com seu carrossel antigo */
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: #2b2b2b; /* Combina com o fundo do container */
+}
+
+.gallery-cell {
+    width: 100%; /* Cada célula ocupa a largura total da galeria */
+    height: 400px; /* Ajuste a altura conforme necessário, ou use aspect-ratio */
+    position: relative;
+    display: flex; /* Usa flexbox para centralizar o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    background-color: #1a1a1a; /* Fundo de fallback para as células */
+}
+
+.gallery-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que as imagens cubram a célula sem distorção */
+    display: block;
+    /* Aplica o efeito de transparência de antes */
+    opacity: 0.5;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.gallery-cell:hover img {
+    opacity: 1; /* Opacidade total ao passar o mouse */
+}
+
+/* Texto da legenda dentro das células do Flickity */
+.gallery-cell-caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo ligeiramente mais opaco */
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+
+    /* Adiciona o mesmo efeito hover para o texto do seu carrossel antigo */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* Impede que a legenda bloqueie o hover da imagem */
+}
+
+.gallery-cell:hover .gallery-cell-caption {
+    opacity: 1;
+}
+
+.gallery-cell-caption h3 {
+    color: #FFD700; /* Dourado para o título da legenda */
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.gallery-cell-caption p {
+    margin-bottom: 0;
+}
+
+
+/* Botões de navegação do Flickity (anterior/próximo) */
+.flickity-button {
+    background: rgba(0, 0, 0, 0.4);
+    color: #FFD700; /* Cor dourada para as setas */
+    font-size: 24px; /* Setas maiores */
+    width: 40px;
+    height: 40px;
+    border-radius: 5px; /* Cantos ligeiramente arredondados */
+    opacity: 1; /* Sempre visível ou ajuste conforme necessário */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.flickity-button:hover {
+    background: rgba(255, 215, 0, 0.6); /* Fundo dourado no hover */
+    color: #0d0d0d; /* Texto escuro no hover */
+}
+
+/* Indicadores de página do Flickity (dots) */
+.flickity-page-dots {
+    bottom: -30px; /* Posiciona os dots abaixo do carrossel */
+}
+
+.flickity-page-dots .dot {
+    background-color: #555; /* Cor padrão dos dots */
+    opacity: 1; /* Garante que os dots estejam visíveis */
+    border-radius: 50%;
+    width: 10px; /* Dots menores para o Flickity */
+    height: 10px;
+    margin: 0 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.flickity-page-dots .dot.is-selected {
+    background-color: #FFD700; /* Dourado para o dot selecionado */
+    transform: scale(1.2); /* Dot selecionado ligeiramente maior */
+}
+
+.flickity-page-dots .dot:hover {
+    background-color: #FFD700; /* Dourado no hover para qualquer dot */
+    transform: scale(1.1);
+}
+
+/* Oculta a barra de progresso padrão do Flickity, se não for necessária */
+.flickity-page-dots .flickity-page-dots-progress {
+    display: none;
+}
+
+.active, .dot:hover {
+    background-color: #FFD700;
+    transform: scale(1.2);
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+@media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+}
+
+/* --- Estilos para a Grade de Horários --- */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem; /* Mais espaçamento superior */
+    margin-bottom: 1.5rem; /* Menos espaçamento inferior, antes da observação */
+    font-size: 1rem; /* Aumenta um pouco a fonte da tabela */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Sombra mais marcada */
+    background-color: #2b2b2b; /* Fundo da tabela igual ao container */
+    border-radius: 8px; /* Cantos arredondados para a tabela */
+    overflow: hidden; /* Para garantir que o border-radius funcione */
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #444; /* Bordas mais escuras para contraste */
+    padding: 15px 10px; /* Mais espaçamento interno */
+    text-align: center;
+    color: #e0e0e0; /* Texto das células em cinza claro */
+}
+
+.schedule-table th {
+    background-color: #1a1a1a; /* Cor de fundo do cabeçalho da tabela */
+    color: #8b7e34; /* Texto do cabeçalho da tabela em amarelo ouro */
+    text-transform: uppercase;
+    font-weight: 700; /* Mais negrito */
+    letter-spacing: 0.8px;
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: #3a3a3a; /* Fundo um pouco mais claro para linhas pares */
+}
+
+.schedule-table tr:hover {
+    background-color: #4a4a4a; /* Efeito hover nas linhas, um cinza mais claro */
+    cursor: pointer;
+}
+
+/* Para destacar o nome do professor */
+.schedule-table td strong {
+    color: #aacc4c; /* Nomes dos professores em amarelo ouro */
+    font-weight: bold;
+}
+
+/* Observação da tabela */
+.schedule-table + p { /* Seleciona o parágrafo logo após a tabela */
+    text-align: center;
+    font-size: 0.9rem;
+    color: #bbb; /* Cor mais suave para a observação */
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+
+/* --- Estilos para Detalhes das Atividades (parágrafo + imagem/vídeo) --- */
+.activity-detail {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem; /* Mais espaço entre texto e mídia */
+    margin-bottom: 4rem; /* Mais espaço entre os blocos de atividade */
+    padding: 2rem; /* Mais padding */
+    background-color: #2b2b2b; /* Fundo igual ao container */
+    border-radius: 10px; /* Cantos mais arredondados */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35); /* Sombra mais proeminente */
+    transition: transform 0.3s ease; /* Transição para o hover */
+}
+
+.activity-detail:hover {
+    transform: translateY(-5px); /* Leve efeito de "subir" no hover */
+}
+
+.activity-detail.reverse {
+    flex-direction: row-reverse;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-content h4 {
+    color: #ffffff; /* Título da atividade em amarelo ouro */
+    font-size: 2rem; /* Aumenta o tamanho do título */
+    margin-bottom: 1.2rem;
+    border-bottom: 3px solid #aacc4c; /* Linha de destaque laranja */
+    padding-bottom: 8px; /* Mais padding da linha para o texto */
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.activity-content p {
+    line-height: 1.8;
+    color: #e0e0e0; /* Texto da descrição em cinza claro */
+    text-align: justify;
+}
+
+.activity-media { /* Mantido para caso queira adicionar imagens no futuro */
+    flex: 0 0 45%; /* Mídia ocupa um pouco mais de largura */
+    max-width: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.activity-media img,
+.activity-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    /* Adicione estas propriedades para a transparência e transição */
+    opacity: 0.5; /* Define a transparência inicial (50%) */
+    transition: opacity 0.5s ease-in-out; /* Suaviza a transição de opacidade */
+}
+.activity-media img:hover {
+    opacity: 1; /* Torna a imagem totalmente opaca ao passar o mouse */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 900px) { /* Ajustei o breakpoint para um pouco maior */
+    .activity-detail {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.8rem;
+    }
+
+    .activity-detail.reverse {
+        flex-direction: column;
+    }
+
+    .activity-media {
+        flex: 1;
+        max-width: 80%; /* Permite que a imagem/vídeo ocupe mais espaço em telas menores */
+    }
+
+    .schedule-table {
+        font-size: 0.85rem;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 500px) { /* Ajustes para celulares pequenos */
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 0.9rem;
+    }
+    
+    .schedule-table th, .schedule-table td {
+        padding: 10px 8px;
+    }
+}
+
+
+
+
+/*STYLE DOS CARDS*/
+.conteudo-cards {
+  position: relative;
+  z-index: 1; /* acima da película */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.fundo-decorativo {
+  width: 100%;
+ min-height: 70.25vh; 
+  background-image: url(imagens/ImagemDeFundoPlano.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 0;
+  
+ 
+}
+
+.fundo-decorativo .pelicula {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.579);
+  top: 0;
+  left: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #030303;
+  padding: 20px;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+  color: #f6f6f6;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.card {
+  width: 320px;
+  height: 410px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h3 {
+  font-size: 1.6em;
+  color: #1e1e1e;
+  margin-bottom: 15px;
+}
+
+.card h4{
+color: #1e1e1e;
+margin-top: px;
+}
+
+.card p {
+  font-size: 1em;
+  color: #413f3fdc;
+  flex-grow: 1;
+}
+
+.card strong{
+ font-size: 1em;
+  color: #000000;
+  flex-grow: 1;
+
+}
+.card small{
+ font-size: 0.75em;
+  color: #413f3fdc;
+  flex-grow: 1;
+
+}
+
+.preco-destaque {
+  background-color: #070707;
+  color: white;
+  padding: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+/*STYLE DAS ESPECIFICAÇOES PARA MUSCULAÇAO*/
+.titulo-musculacao {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+  color: #ffffff;
+  margin-top: 50px;
+}
+
+.card-container-musculacao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.card-musculacao {
+  width: 330px;
+  height: 300px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-musculacao h3 {
+  font-size: 1.6em;
+  color: #1e1e1e;
+  margin-bottom: 15px;
+}
+
+.card-musculacao h4{
+color: #1e1e1e;
+margin-top: px;
+}
+
+.card-musculacao p {
+  font-size: 1em;
+  color: #413f3fdc;
+  flex-grow: 1;
+}
+
+.card-musculacao strong{
+
+  color: #000000;
+}
+
+.footer-content {
+    display: flex; /* Ativa flexbox para as colunas */
+    justify-content: space-around; /* Distribui as colunas com espaço entre elas */
+    align-items: flex-start; /* Alinha o conteúdo das colunas ao topo */
+    width: 100%;
+    max-width: 1000px; /* Largura máxima para as colunas */
+    padding-bottom: 2rem; /* Espaço antes da linha divisória */
+    border-bottom: 1px solid #333; /* Linha divisória */
+    margin-bottom: 1.5rem; /* Espaço depois da linha divisória */
+}
+
+.footer-column {
+    flex: 1; /* Faz as colunas ocuparem espaço igual */
+    text-align: center; /* Centraliza o texto dentro da coluna */
+    padding: 0 1rem; /* Padding interno para não colar nas bordas */
+}
+
+.footer-column h3 {
+    color: #FFD700; /* Títulos das colunas em amarelo ouro */
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-column ul {
+    list-style: none; /* Remove marcadores de lista */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.7rem;
+}
+
+.footer-column ul li a {
+    color: #e0e0e0; /* Cor dos links dos planos */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #FFD700; /* Destaque amarelo ouro no hover */
+}
+
+.social-icons a,
+.contact-info a {
+    color: #ffffff; /* Ícones brancos */
+    font-size: 2.5rem; /* Tamanho dos ícones */
+    margin: 0 15px; /* Espaçamento entre ícones */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover,
+.contact-info a:hover {
+    color: #FFD700; /* Amarelo ouro no hover */
+    transform: translateY(-3px) scale(1.1); /* Efeito de subir e crescer */
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #cccccc; /* Cor mais suave para o texto inferior */
+    line-height: 1.7; /* Espaçamento entre linhas */
+    max-width: 800px; /* Largura máxima para o texto inferior */
+    padding: 0 1rem;
+}
+
+.footer-bottom p {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsividade para o rodapé */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Coloca as colunas uma abaixo da outra em telas menores */
+        padding-bottom: 1.5rem;
+    }
+
+    .footer-column {
+        margin-bottom: 2rem; /* Espaço entre as colunas empilhadas */
+        width: 100%; /* Ocupa a largura total */
+    }
+
+    .footer-bottom {
+        padding: 0 1.5rem;
+    }
+}
+
+/* STYLE HOME NOVO*/
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #111;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #ffcc00;
+}
+
+nav a.active::after,
+nav a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ffcc00;
+}
+
+nav a.active {
+  color: #FFD700; /* Amarelo ouro no texto */
+  font-weight: bold;
+  
+  background-color: transparent; /* Garante que não tenha fundo */
+}
+
+
+
+.hero {
+  position: relative;
+  background: url(imagens/imagemSiteAcad1.jpg) no-repeat center center/cover;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  padding: 2rem 1rem;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.feature-box {
+  min-width: 220px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 1rem;
+   display: flex;
+  flex-direction: column;
+}
+
+.sobre-nos {
+  padding: 2rem;
+}
+
+.sobre-nos h2 {
+  margin-bottom: 1rem;
+
+}
+.sobre-nos p{
+text-align: center;
+}
+
+/* STYLE PARA O FAQ*/
+
+.faq {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #FFD700;
+  font-size: 2rem;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.faq-question {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #292929;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 1rem;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.faq-item input[type="checkbox"] {
+  display: none;
+}
+
+.faq-item input[type="checkbox"]:checked ~ .faq-answer {
+  max-height: 200px;
+  padding: 1rem;
+}
+
+/* STYLE PARA A PAGINA DE AMBIENTE*/
+
+.ambiente-hero {
+  background: url(imagens/imagemAmbiente.jpg) no-repeat center center/cover;
+  height: 60vh;
+  color: white;
+}
+
+.ambiente-descricao {
+  padding: 2rem;
+  text-align: center;
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.ambiente-descricao h2 {
+  font-size: 2rem;
+  color: #FFD700;
+  margin-bottom: 1rem;
+}
+
+.ambiente-descricao p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ambiente-imagens {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.ambiente-imagens img {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .ambiente-imagens img {
+    width: 90%;
+  }
+}
+
+.logo a {
+  display: flex;
+  flex-direction: column; /* imagem em cima do texto */
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.logo img {
+  height: 60px; /* ajuste conforme necessário */
+  width: auto;
+  margin-bottom: 0.3rem;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
